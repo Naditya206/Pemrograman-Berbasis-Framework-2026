@@ -1,0 +1,85 @@
+.navbar {
+  width: 100%;
+  height: 70px;
+  padding: 0 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(135deg, #1f2937, #111827);
+  color: #ffffff;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Logo / Brand */
+.navbar_brand {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Right Section */
+.navbar_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Welcome Text */
+.navbar_user {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Button */
+.navbar_button {
+  padding: 8px 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Sign In */
+.navbar_button_primary {
+  background-color: #0070f3;
+  color: #ffffff;
+}
+
+.navbar_button_primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Sign Out */
+.navbar_button_danger {
+  background-color: #ff4d4f;
+  color: #ffffff;
+}
+
+.navbar_button_danger:hover {
+  background-color: #d9363e;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar_brand {
+    font-size: 20px;
+  }
+
+  .navbar_user {
+    display: none;
+  }
+}

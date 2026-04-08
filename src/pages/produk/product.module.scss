@@ -1,0 +1,118 @@
+.produk {
+  width: 100%;
+  padding: 0 5%;
+  &__title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 36px;
+  }
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    &__skeleton {
+      width: 200px;
+      padding: 16px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #f6f7f8;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: shimmer 1.5s infinite;
+      }
+      &__image {
+        width: 100%;
+        height: 200px;
+        background-color: #ededed;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+      &__name {
+        width: 80%;
+        height: 20px;
+        background-color: #ededed;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      &__category {
+        width: 60%;
+        height: 16px;
+        background-color: #ededed;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      &__price {
+        width: 40%;
+        height: 16px;
+        background-color: #ededed;
+        border-radius: 4px;
+      }
+    }
+    &__item {
+      width: calc(25% - 20px);
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+      &__image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+      &__name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      &__price {
+        font-size: 16px;
+        color: #ff5722;
+        font-weight: bold;
+      }
+      &__category {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
