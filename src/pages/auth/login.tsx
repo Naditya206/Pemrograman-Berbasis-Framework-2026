@@ -1,8 +1,8 @@
+import TampilanLogin from "@/views/auth/login";
+
 const HalamanLogin = () => {
   return (
-    <>
-      <div>Halaman Login</div>
-    </>
+    <TampilanLogin />
   );
 };
 

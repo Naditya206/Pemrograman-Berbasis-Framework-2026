@@ -45,59 +45,61 @@ const TampilanRegister = () => {
   };
 
   return (
-    <div className={style.register}>
-      {error && <p className={style.register__error}>{error}</p>}
-      <h1 className={style.register__title}>Halaman Register</h1>
-      <div className={style.register__form}>
-        <form onSubmit={handleSubmit}>
-          <div className={style.register__form__item}>
-            <label htmlFor="fullname" className={style.register__form__item__label}>
-              Fullname
-            </label>
-            <input
-              type="text"
-              id="fullname"
-              name="fullname"
-              placeholder="Fullname"
-              className={style.register__form__item__input}
-              required
-            />
-          </div>
-          <div className={style.register__form__item}>
-            <label htmlFor="email" className={style.register__form__item__label}>
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              className={style.register__form__item__input}
-              required
-            />
-          </div>
-          <div className={style.register__form__item}>
-            <label htmlFor="password" className={style.register__form__item__label}>
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              className={style.register__form__item__input}
-              required
-            />
-          </div>
-          <button type="submit" className={style.register__form__item__button} disabled={isLoading}>
-            {isLoading ? "Loading..." : "Register"}
-          </button>
-        </form>
+    <>
+      <div className={style.register}>
+        {error && <p className={style.register__error}>{error}</p>}
+        <h1 className={style.register__title}>Halaman Register</h1>
+        <div className={style.register__form}>
+          <form onSubmit={handleSubmit}>
+            <div className={style.register__form__item}>
+              <label htmlFor="fullname" className={style.register__form__item__label}>
+                Fullname
+              </label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                placeholder="Fullname"
+                className={style.register__form__item__input}
+                required
+              />
+            </div>
+            <div className={style.register__form__item}>
+              <label htmlFor="email" className={style.register__form__item__label}>
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                className={style.register__form__item__input}
+                required
+              />
+            </div>
+            <div className={style.register__form__item}>
+              <label htmlFor="password" className={style.register__form__item__label}>
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                className={style.register__form__item__input}
+                required
+              />
+            </div>
+            <button type="submit" className={style.register__form__item__button} disabled={isLoading}>
+              {isLoading ? "Loading..." : "Register"}
+            </button>
+          </form>
+        </div>
+        <p className={style.register__link}>
+          Sudah punya akun? Login <Link href="/auth/login">disini</Link>
+        </p>
       </div>
-      <p className={style.register__link}>
-        Sudah punya akun? Login <Link href="/auth/login">disini</Link>
-      </p>
-    </div>
+    </>
   );
 };
 
