@@ -1,6 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { login } from "@/utils/db/servicefirebase";
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
+import { login, loginWithSocial } from "@/utils/db/servicefirebase";
 import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
@@ -9,6 +11,14 @@ export const authOptions: NextAuthOptions = {
     },
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID || "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+        }),
+        GithubProvider({
+            clientId: process.env.GITHUB_ID || "",
+            clientSecret: process.env.GITHUB_SECRET || "",
+        }),
         CredentialsProvider({
             name: "credentials",
             credentials: {
@@ -46,6 +56,26 @@ export const authOptions: NextAuthOptions = {
                 token.fullname = user.fullname;
                 token.role = user.role;
             }
+
+            if (["google", "github"].includes(account?.provider as string)) {
+                const data = {
+                    fullname: user.name,
+                    email: user.email,
+                    image: user.image,
+                    type: account.provider,
+                };
+
+                await loginWithSocial(data, (result: any) => {
+                    if (result.status) {
+                        token.fullname = result.data.fullname;
+                        token.email = result.data.email;
+                        token.image = result.data.image;
+                        token.type = result.data.type;
+                        token.role = result.data.role;
+                    }
+                });
+            }
+
             return token;
         },
         async session({ session, token }: any) {
@@ -57,6 +87,12 @@ export const authOptions: NextAuthOptions = {
             }
             if (token.role) {
                 session.user.role = token.role;
+            }
+            if (token.image) {
+                session.user.image = token.image;
+            }
+            if (token.type) {
+                session.user.type = token.type;
             }
             return session;
         },

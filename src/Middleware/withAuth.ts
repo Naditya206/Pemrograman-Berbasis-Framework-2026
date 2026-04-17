@@ -2,6 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
 
 const hanyaAdmin = ["/admin"];
+const hanyaEditor = ["/editor"];
 
 export default function withAuth(
   middleware: NextMiddleware,
@@ -21,7 +22,16 @@ export default function withAuth(
         return NextResponse.redirect(url);
       }
 
+      // Proteksi Admin
       if (token.role !== "admin" && hanyaAdmin.includes(pathname)) {
+        return NextResponse.redirect(new URL("/", req.url));
+      }
+
+      // Proteksi Editor (Admin juga diperbolehkan masuk)
+      if (
+        !["admin", "editor"].includes(token.role as string) &&
+        hanyaEditor.includes(pathname)
+      ) {
         return NextResponse.redirect(new URL("/", req.url));
       }
     }

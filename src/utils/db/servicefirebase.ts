@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, Firestore, getDoc, doc, query, where, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, Firestore, getDoc, doc, query, where, addDoc, updateDoc } from "firebase/firestore";
 import app from "./firebase";
 import bcrypt from "bcrypt";
 
@@ -31,6 +31,40 @@ export async function login(email: string) {
     return data[0];
   } else {
     return null;
+  }
+}
+
+export async function loginWithSocial(userdata: any, callback: any) {
+  const q = query(
+    collection(db, "users"),
+    where("email", "==", userdata.email)
+  );
+
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  if (data.length > 0) {
+    // User already exists, update data
+    userdata.role = (data[0] as any).role;
+    await updateDoc(doc(db, "users", data[0].id), userdata);
+    callback({
+      status: true,
+      message: `User registered and logged in with ${userdata.type}`,
+      data: userdata,
+    });
+  } else {
+    // New user, add to db
+    userdata.role = "member";
+    userdata.createdAt = new Date();
+    await addDoc(collection(db, "users"), userdata);
+    callback({
+      status: true,
+      message: `User registered and logged in with ${userdata.type}`,
+      data: userdata,
+    });
   }
 }
 
