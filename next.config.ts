@@ -19,6 +19,26 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "assets.adidas.com",
+      },
+      {
+        protocol: "https",
+        hostname: "down-id.img.susercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "antarestar.com",
+      },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
   },
 };

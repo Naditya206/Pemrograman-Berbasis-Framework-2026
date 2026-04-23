@@ -1,13 +1,17 @@
 import syles from "./navbar.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Script from "next/script";
 
 const Navbar = () => {
   const { data }: any = useSession();
 
   return (
     <div className={syles.navbar}>
-      <div className={syles.navbar_brand}>MyApp</div>
+      <div className={syles.navbar_brand} id="title"></div>
+      <Script id="title-script" strategy="lazyOnload">
+        {`document.getElementById('title').innerHTML = 'MyApp';`}
+      </Script>
       <div className={syles.navbar_right}>
         {data ? (
           <>
@@ -16,8 +20,8 @@ const Navbar = () => {
                 <Image
                   src={data.user.image}
                   alt={data.user.fullname || "User Avatar"}
-                  width={42}
-                  height={42}
+                  width={50}
+                  height={50}
                   className={syles.navbar_user_image}
                 />
               )}
