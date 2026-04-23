@@ -1,14 +1,7 @@
-import styles from "../../pages/produk/product.module.scss";
+import styles from "@/pages/produk/product.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-
-type ProductType = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-};
+import { ProductType } from "@/types/Product.type";
 
 const TampilanProduk = ({ products }: { products: ProductType[] }) => {
   return (
