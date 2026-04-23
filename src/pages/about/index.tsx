@@ -1,5 +1,9 @@
-export default function AboutPage() {
-    return (
-                <h1 className="text-2xl font-bold">Ini halaman about</h1>
-    );
-}
+const AboutPage = () => {
+  return (
+    <div>
+      <h1 data-testid="title">About Page</h1>
+    </div>
+  );
+};
+
+export default AboutPage;

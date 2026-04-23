@@ -8,7 +8,11 @@ const Navbar = () => {
 
   return (
     <div className={syles.navbar}>
-      <div className={syles.navbar_brand} id="title"></div>
+      <div
+        className={syles.navbar_brand}
+        id="title"
+        data-testid="navbar-brand"
+      ></div>
       <Script id="title-script" strategy="lazyOnload">
         {`document.getElementById('title').innerHTML = 'MyApp';`}
       </Script>
@@ -38,6 +42,7 @@ const Navbar = () => {
           <button
             className={`${syles.navbar_button} ${syles.navbar_button_primary}`}
             onClick={() => signIn()}
+            data-testid="button-signin"
           >
             Sign In
           </button>
